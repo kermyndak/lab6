@@ -13,14 +13,26 @@ when 2
   first = ->(x) { Math.sin(x) / x }
   second = ->(x) { Math.tan(x + 1) / (x + 1) }
 
+  pr = proc { |x| Math.sin(x) / x }
+  pr_2 = proc { |x| Math.tan(x + 1) / (x + 1) }
+
   p = Integral.new(0.1, 1, 1_000_000)
   puts "First function (lambda function): #{p.intg(&first)}"
+  
   p = Integral.new(1, 2, 1_000_000)
   puts "Second function (lambda function): #{p.intg(&second)}"
+
   p = Integral.new(0.1, 1, 1_000_000)
   puts "First function (with block): #{p.intg { |x| Math.sin(x) / x }}"
+
   p = Integral.new(1, 2, 1_000_000)
   puts "Second function (with block): #{p.intg { |x| Math.tan(x + 1) / (x + 1) }}"
+
+  p = Integral.new(0.1, 1, 1_000_000)
+  puts "First function (proc function): #{p.intg(&pr)}"
+
+  p = Integral.new(1, 2, 1_000_000)
+  puts "Second function (proc function): #{p.intg(&pr_2)}"
 else
   p 'Bad input, exit...'
 end
