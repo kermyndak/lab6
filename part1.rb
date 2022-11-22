@@ -16,10 +16,9 @@ class FirstPart
     default = @a_val
     step = (@b_val - @a_val) / 2.0
     loop do
-      @sum = 0
       step /= 2
       @a_val = default
-      sum
+      sum(step)
       break if (@sum * step - @best_val).abs <= @accur
     end
     [@sum * step, (step**-1).to_i]

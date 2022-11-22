@@ -17,7 +17,13 @@ when 1
   temp = val.len_ln
   puts "Len Ln() function with accuracy = 1e-4: #{temp[0]}, count steps: #{temp[1]}"
 when 2
-  puts "This part while don't work"
+  val = SecondPart.new(1, 2)
+  puts "Len Ln() function accuracy variant: #{val.best_val}"
+  temp = val.len_ln
+  puts "Len Ln() function with accuracy = 1e-3: #{temp[-1]}, count steps: #{2**(temp.size + 1)}"
+  val = SecondPart.new(1, 2, 1e-4)
+  temp = val.len_ln
+  puts "Len Ln() function with accuracy = 1e-4: #{temp[-1]}, count steps: #{2**(temp.size + 1)}"
 when 3
   first = ->(x) { Math.sin(x) / x }
   second = ->(x) { Math.tan(x + 1) / (x + 1) }
