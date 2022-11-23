@@ -15,13 +15,13 @@ class SecondPart
   def len_ln
     default = @a_val
     step = (@b_val - @a_val) / 2.0
-    enum = Enumerator::Lazy.new(1..Float::INFINITY) do |yielder, _val|
+    enum = Enumerator::Lazy.new(1..Float::INFINITY) do |yielder|
       @a_val = default
       step /= 2.0
       sum(step)
-      yielder << @sum * step
+      yielder << [@sum * step, (step**-1).to_i]
     end
-    enum.take_while { |val| (val - @best_val).abs > @accur }.force
+    enum.drop_while { |val| (val[0] - @best_val).abs > @accur }.first
   end
 
   def sum(step)
